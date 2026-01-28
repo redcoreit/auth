@@ -3,24 +3,24 @@
 ## YOLO
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/redcoreit/auth/main/yolo.sh | sh
+curl -fsSL https://raw.githubusercontent.com/redcoreit/auth/master/yolo.sh | sh
 ```
 
 ## Linux SSH setup
 
-### gh-yk-arch.sh
+`gh-yk-arch.sh`
 
 This script installs necessary components to use YubiKey with Arch linux.
 
-### gh-sk-linux.sh
+`gh-sk-linux.sh`
 
 Creates a new SSH key-pair, the classic way.
 
-### config-ssh.sh
+`config-ssh.sh`
 
 Configures SSH keys to access GitHub.
 
-### yolo.sh
+`yolo.sh`
 
 Calls gh-yk-arch.sh and config-ssh.sh
 

@@ -9,7 +9,7 @@ if [[ -f "$CONFIG_FILE" ]]; then
   cp "$CONFIG_FILE" "${CONFIG_FILE}.bak.$(date +%s)"
 fi
 
-# Collect all SSH keys containing '_gh_' in filename (exclude pub files)
+# Collect all SSH keys containing '_gh' in filename (exclude pub files)
 keys=()
 while IFS= read -r -d $'\0' file; do
   keys+=("$file")
