@@ -19,7 +19,7 @@ echo "[*] Creating SSH directory..."
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 
-KEY_PATH="$HOME/.ssh/id_ed25519_sk_github"
+KEY_PATH="$HOME/.ssh/id_ed25519_yk_gh"
 
 if [[ ! -f "${KEY_PATH}" ]]; then
   echo "[*] Generating hardware-backed SSH key (touch required)..."
@@ -35,22 +35,6 @@ fi
 
 chmod 600 "${KEY_PATH}"
 chmod 644 "${KEY_PATH}.pub"
-
-echo "[*] Configuring SSH for GitHub..."
-SSH_CONFIG="$HOME/.ssh/config"
-
-if ! grep -q "Host github.com" "${SSH_CONFIG}" 2>/dev/null; then
-  cat >> "${SSH_CONFIG}" <<EOF
-
-Host github.com
-  HostName github.com
-  User git
-  IdentityFile ${KEY_PATH}
-  IdentitiesOnly yes
-EOF
-fi
-
-chmod 600 "${SSH_CONFIG}"
 
 echo "[*] Public key to add to GitHub:"
 echo "--------------------------------------------------"
