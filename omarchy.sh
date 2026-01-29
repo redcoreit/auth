@@ -1,17 +1,26 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "Bootstrapping Omarchy..."
-
-# YOLO
-curl -fsSL https://raw.githubusercontent.com/redcoreit/auth/master/yolo.sh | sh
+echo "[*] Bootstrapping Omarchy..."
 
 # Setup dirs
 BASE_DIR="$HOME/repos"
 mkdir -p "$BASE_DIR"
+
+# Get auth stuff, we need interactive shell, no curl
+# No SSH without keys so only https remains
+echo "[*] Cloning auth repo..."
 cd "$BASE_DIR"
+git clone https://github.com/redcoreit/auth.git
+
+# Setup YubiKey and SSH access
+cd "$BASE_DIR/auth"
+./gh-yk-arch.sh
+./config-ssh.sh
 
 # Get the secret goodies
+echo "[*] Cloning omarchy repo..."
+cd "$BASE_DIR"
 git clone git@github.com:redcoreit/omarchy
 
 # 'And the monkey presses the button.'
