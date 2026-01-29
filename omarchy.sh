@@ -7,7 +7,7 @@ echo "Bootstrapping Omarchy..."
 curl -fsSL https://raw.githubusercontent.com/redcoreit/auth/master/yolo.sh | sh
 
 # Setup dirs
-$BASE_DIR = "~/repos"
+BASE_DIR = "~/repos"
 mkdir $BASE_DIR
 cd $BASE_DIR
 
