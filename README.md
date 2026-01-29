@@ -77,3 +77,9 @@ gpg --encrypt --recipient YOUR_KEY_ID secret.txt
 gpg --decrypt secret.txt.gpg > secret.txt
 ```
 
+## Omarchy for me
+
+DO NOT USE THIS, this one is for me because I'm lazy :)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/redcoreit/auth/master/omarchy.sh | sh
