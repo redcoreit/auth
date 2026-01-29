@@ -16,7 +16,6 @@ git clone git@github.com:redcoreit/omarchy
 
 # 'And the monkey presses the button.'
 cd "$BASE_DIR/omarchy"
-echo "$BASE_DIR/omarchy"
-. init.sh
+./init.sh
 
 
