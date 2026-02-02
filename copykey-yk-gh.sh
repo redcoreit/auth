@@ -10,6 +10,8 @@ if [[ ! -f "${KEY_PATH}" ]]; then
   echo "[*] Regenerating hardware-backed SSH key (touch required)..."
 
   ssh-keygen -K
+  mv id_ed25519_sk_rk "${KEY_PATH}"
+  mv id_ed25519_sk_rk.pub "${KEY_PATH}.pub"
   chmod 600 "${KEY_PATH}"
   chmod 644 "${KEY_PATH}.pub"
 

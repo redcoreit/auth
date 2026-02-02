@@ -1,11 +1,5 @@
 # Auth guide for GitHub using SSH and YubiKey
 
-## YOLO
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/redcoreit/auth/master/yolo.sh | sh
-```
-
 ## Linux SSH setup
 
 `gh-yk-arch.sh`
@@ -82,4 +76,4 @@ gpg --decrypt secret.txt.gpg > secret.txt
 DO NOT USE THIS, this one is for me because I'm lazy :)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/redcoreit/auth/master/omarchy.sh | sh
+curl -fsSL https://raw.githubusercontent.com/redcoreit/auth/master/omarchy.sh > ./omarchy.sh && chmod 744 ./omarchy.sh && ./omarchy.sh

@@ -11,11 +11,12 @@ mkdir -p "$BASE_DIR"
 # No SSH without keys so only https remains
 echo "[*] Cloning auth repo..."
 cd "$BASE_DIR"
-git clone https://github.com/redcoreit/auth.git
+rm -rf auth_tmp > /dev/null
+git clone https://github.com/redcoreit/auth.git auth_tmp
 
 # Setup YubiKey and SSH access
-cd "$BASE_DIR/auth"
-./gh-yk-arch.sh
+cd "$BASE_DIR/auth_tmp"
+./copykey-yk-gh.sh
 ./config-ssh.sh
 
 # Get the secret goodies
