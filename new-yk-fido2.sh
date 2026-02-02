@@ -2,7 +2,7 @@
 set -euo pipefail
 
 while true; do
-    echo "YubiKey SW install and FIDO2 reset will be performed."
+    echo "YubiKey FIDO2 wipe will be performed."
     echo "You lose all access to current FIDO2 protected sites."
     read -r -p "Proceed [y/n]: " ans
     case "$ans" in
@@ -11,20 +11,6 @@ while true; do
         *) echo "Answer y or n." ;;
     esac
 done
-
-echo "[*] Installing required packages..."
-sudo pacman -Sy --needed --noconfirm \
-  yubikey-manager \
-  yubikey-personalization \
-  libfido2 \
-  openssh \
-  pcsclite
-
-echo "[*] Enabling pcscd (smartcard service)..."
-sudo systemctl enable --now pcscd.socket
-
-echo "[*] Checking YubiKey..."
-ykman info
 
 echo "[*] Creating SSH directory..."
 mkdir -p ~/.ssh

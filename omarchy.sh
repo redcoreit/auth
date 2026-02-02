@@ -16,6 +16,7 @@ git clone https://github.com/redcoreit/auth.git auth_tmp
 
 # Setup YubiKey and SSH access
 cd "$BASE_DIR/auth_tmp"
+./install-yk-arch.sh
 ./copykey-yk-gh.sh
 ./config-ssh.sh
 
