@@ -1,75 +1,50 @@
-# Auth guide for GitHub using SSH and YubiKey
+# Auth guide for YubiKey (SSH, GitHub)
 
-## Linux SSH setup
-
-`gh-yk-arch.sh`
-
-This script installs necessary components to use YubiKey with Arch linux.
-
-`gh-sk-linux.sh`
-
-Creates a new SSH key-pair, the classic way.
-
-`config-ssh.sh`
-
-Configures SSH keys to access GitHub.
-
-`yolo.sh`
-
-Calls gh-yk-arch.sh and config-ssh.sh
-
-## GitHub SSH (one-time manual step)
-
-- Copy the printed public key
-- Go to: GitHub → Settings → SSH and GPG keys → New SSH key
-- Paste it
-- Test: `ssh -T git@github.com`
-
-You should see:
+## Install YubiKey software (Arch btw)
 
 ```bash
-Hi <username>! You've successfully authenticated...
+install-yk-arch.sh
 ```
 
-Touch required. No passwords. Ever.
+This script installs all the necessary packages to use a YubiKey on an Arch-based Linux system.
 
-## GitHub web login, YubiKey as a Passkey (FIDO2)
-
-1. GitHub → Settings → Password and authentication
-1. Passkeys → Add passkey
-1. Insert YubiKey
-1. Touch when prompted
-
-After this:
-
-- Any modern browser (Firefox, Chromium)
-- Login = insert key + touch
-
-## YubiKey cheatsheet
-
-### Generate RSA key on YubiKey
+## Generating new keys
 
 ```bash
-# generate, choose RSA 4096 or ECC (ed25519 / cv25519)
-gpg --card-edit
-admin
-generate
-
-# check key status
-gpg --card-status
+new-ssh-gh.sh
 ```
-
-### Encrypt with YubiKey
+This script generates a simple SSH key pair (non–hardware-backed).  
+I use this for GitHub as well when I don’t want to use the YubiKey all the time.
 
 ```bash
-gpg --encrypt --recipient YOUR_KEY_ID secret.txt
+new-yk-gh.sh
 ```
+DANGER: You will lose your current FIDO2 key and all access associated with it.
 
-### Decrypt with YubiKey
+This script generates a new FIDO2 key on the YubiKey.  
+The public key can be added to GitHub to authenticate Git operations.  
+The private key is only a stub that redirects requests to the YubiKey.  
+
+## Using existing keys
 
 ```bash
-gpg --decrypt secret.txt.gpg > secret.txt
+copykey-yk-gh.sh
 ```
+This script is similar to `new-yk-fido2.sh`, but it does not wipe the FIDO2 key stored on the YubiKey.  
+It simply recreates the key pair on disk.
+
+Use this when setting up a new system with an existing YubiKey.
+
+```bash
+config-ssh.sh
+```
+
+Creating key pairs alone is not enough for authentication.  
+The system does not know where the keys are stored or which ones to use.  
+This script creates an SSH config file that uses the already generated keys.  
+
+NOTE: This is a very stupid script and it will overwrite your current SSH config file.  
+Use it only when setting up a new system and no other keys have been configured manually.
 
 ## Omarchy for me
 
@@ -77,3 +52,4 @@ DO NOT USE THIS, this one is for me because I'm lazy :)
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/redcoreit/auth/master/omarchy.sh > ./omarchy.sh && chmod 744 ./omarchy.sh && ./omarchy.sh
+```
