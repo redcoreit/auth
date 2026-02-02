@@ -5,12 +5,12 @@ echo "[*] Creating SSH directory..."
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 
-KEY_PATH="$HOME/.ssh/id_ed25519_sk_gh"
+KEY_PATH="$HOME/.ssh/id_ed25519_ssh_gh"
 
 if [[ ! -f "${KEY_PATH}" ]]; then
   echo "[*] Generating SSH key for GitHub repo access"
   ssh-keygen \
-    -t ed25519-sk \
+    -t ed25519 \
     -C "github" \
     -f "${KEY_PATH}"
 else
