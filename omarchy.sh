@@ -20,13 +20,7 @@ cd "$BASE_DIR/auth_tmp"
 ./copykey-yk-gh.sh
 ./config-ssh.sh
 
-# Get the secret goodies
-echo "[*] Cloning omarchy repo..."
-cd "$BASE_DIR"
-git clone git@github.com:redcoreit/omarchy
-
-# 'And the monkey presses the button.'
-cd "$BASE_DIR/omarchy"
-./init.sh
-
-
+echo "[*] Done."
+echo "Next steps:"
+echo "1) Clone omarchy repo"
+echo "2) Run init.sh"
